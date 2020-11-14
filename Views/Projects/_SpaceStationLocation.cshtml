@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title> JSON </title>
+
+</head>
+
+<body>
+    @model WebApplication2.Models.AddPhoneNumberViewModel
+    @{
+        ViewBag.Title = "API call";
+    }
+
+    <h2>@ViewBag.Title:</h2>
+    <h1>Where is the International Space Station?</h1>
+    <p>
+        Lat: <span id="lat"></span>
+        Lon: <span id="lon"></span>
+
+    </p>
+
+
+    <script type='text/javascript'>
+
+        const apiUrl = 'https://api.wheretheiss.at/v1/satellites/25544';
+        async function getData() {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            console.log(data);
+            document.getElementById('lat').textContent = data.latitude;
+            document.getElementById('lon').textContent = data.longitude;
+
+        }
+
+        getData();
+
+
+    </script>
+
+
+</body>
+
+</html>
